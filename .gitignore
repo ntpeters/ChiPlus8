@@ -1,0 +1,26 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Ignore the bin directory
+bin/*
+
+# Ignore vim undo and swap files
+*.un~
+*.swp
+
+# Ignore log files
+*.log
+
+# Ignore the Chip 8 programs directory
+Chip-8 Pack/*
