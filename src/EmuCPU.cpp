@@ -33,7 +33,25 @@ void EmuCPU::loadProgram( const char* filename) {
 	writeLog( LOG_DEBUG, "Loading program!" );
 	writeLog( LOG_VERBOSE, "%s", filename );
 
-	
+	std::ifstream programFile;
+	programFile.open( filename, std::ios::in | std::ios::binary | std::ios::ate );
+
+	if( !programFile.is_open() ) {
+		writeLog( LOG_FATAL, "Failed to open program file!" );
+		throw -1;
+	}
+
+	int programSize = programFile.tellg();
+	printf( "%d\n", programSize );
+	if( programSize > 4096 - 512 ) {
+		writeLog( LOG_FATAL, "Program too large to fit into memory!" );
+		programFile.close();
+		throw -1;
+	}
+
+	programFile.seekg( 0, std::ios::beg );
+	programFile.read( (char*)memory + 512, programSize );
+	programFile.close();
 }
 
 void EmuCPU::fetch() {
