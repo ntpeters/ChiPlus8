@@ -9,8 +9,5 @@ public:
     void runProgram();
 
 private:
-    void drawScreen( char** screen );
-
     EmuCPU* cpu;
-
 };
