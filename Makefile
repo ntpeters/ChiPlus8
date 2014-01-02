@@ -9,11 +9,11 @@ all: logger $(PROG)
 
 $(PROG): $(OBJS)
 	mkdir -p ./bin/
-	$(CC) -o $(PROG) $(LDFLAGS) $(OBJS)
+	$(CC) -rdynamic -o $(PROG) $(LDFLAGS) $(OBJS)
 	rm -f $(OBJS)
 
 logger:
 	cd ./src/SimpleLogger; git pull origin master; make clean all
 
 clean:
-	rm -f $(PROG) $(TEST_PROG) $(OBJS)
+	rm -f $(PROG) $(OBJS)

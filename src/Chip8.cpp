@@ -5,7 +5,7 @@
 #include "./SimpleLogger/simplog.h"
 
 Chip8::Chip8( const char* filename ) {
-	simplog.writeLog( LOG_DEBUG, "Emulator created!" );
+	simplog.writeLog( SIMPLOG_DEBUG, "Emulator created!" );
 
 	cpu = new EmuCPU();
 
@@ -13,14 +13,14 @@ Chip8::Chip8( const char* filename ) {
 }
 
 Chip8::~Chip8() {
-	simplog.writeLog( LOG_DEBUG, "Emulator destroyed!" );
+	simplog.writeLog( SIMPLOG_DEBUG, "Emulator destroyed!" );
 }
 
 void Chip8::runProgram() {
-	simplog.writeLog( LOG_DEBUG, "Running program!" );
+	simplog.writeLog( SIMPLOG_DEBUG, "Running program!" );
 
-	bool done = false;
-	while( !done ) {
-		done = cpu->doCycle();
+	bool run = true;
+	while( run ) {
+		run = cpu->doCycle();
 	}
 }

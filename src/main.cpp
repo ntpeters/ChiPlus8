@@ -1,3 +1,5 @@
+#include <syslog.h>
+
 #include "Chip8.h"
 #include "./SimpleLogger/simplog.h"
 
@@ -6,11 +8,13 @@ const char* version = "Development Build";
 // Logger settings
 bool keepLogs       = false;
 const char* logFile = "chip8.log";
-int logLevel        = LOG_VERBOSE;
+int logLevel        = SIMPLOG_VERBOSE;
 bool silent         = false;
 
-const char* programFileName = "Chip-8 Pack/Chip-8 Games/Space Invaders [David Winter].ch8";
-//const char* programFileName = "testLargeFile.txt";
+const char* spaceInvaders = "Chip-8 Pack/Chip-8 Games/Space Invaders [David Winter].ch8";
+const char* pong = "Chip-8 Pack/Chip-8 Games/Pong (1 player).ch8";
+
+const char* programFileName = spaceInvaders;
 
 // Prototypes
 void initLogger();
@@ -18,15 +22,17 @@ void initLogger();
 int main() {
 	initLogger();
 
-	simplog.writeLog( LOG_INFO, "Starting ChiPlus8, Chip 8 Emulator - Version: %s", version );
+	simplog.writeLog( SIMPLOG_INFO, "Starting ChiPlus8, Chip 8 Emulator - Version: %s", version );
 
 	try {
-	Chip8* emulator = new Chip8( programFileName );
+		Chip8* emulator = new Chip8( programFileName );
 
-	emulator->runProgram();
+		emulator->runProgram();
 
 	} catch( int error ) {
 		// Throw up error dialog
+		simplog.writeLog( SIMPLOG_FATAL, "Fatal Exception: '%d' thrown!", error );
+		simplog.writeStackTrace();
 
 		return error;
 	}

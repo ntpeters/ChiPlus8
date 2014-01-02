@@ -75,4 +75,7 @@ private:
 
     // Flag to denote if the screen should be redrawn
     bool drawFlag;
+
+    // Program boundry in memory
+    int programMemoryBoundry;
 };
