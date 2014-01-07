@@ -33,6 +33,9 @@ bool EmuCPU::doCycle() {
 		this->drawScreen();
 	}
 
+    simplog.writeLog( SIMPLOG_WARN, "Test warning." );
+    simplog.writeLog( SIMPLOG_ERROR, "Test error." );
+
 	return decode_execute_OK;
 }
 
@@ -414,6 +417,9 @@ bool EmuCPU::decode_execute() {
 
 			sound_timer--;
 		}
+
+		simplog.writeStackTrace();
+		throw -1;
 		
 		return true;
 	}

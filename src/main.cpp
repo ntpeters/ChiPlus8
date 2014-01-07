@@ -14,7 +14,7 @@ bool silent         = false;
 const char* spaceInvaders = "Chip-8 Pack/Chip-8 Games/Space Invaders [David Winter].ch8";
 const char* pong = "Chip-8 Pack/Chip-8 Games/Pong (1 player).ch8";
 
-const char* programFileName = spaceInvaders;
+const char* programFileName = pong;
 
 // Prototypes
 void initLogger();
